@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Stopwatch with Laps and Centiseconds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .stopwatch {
+            background: #ffffff;
+            border-radius: 41px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 37px 20px 0px 20px;
+            text-align: center;
+            /* max-width: 350px; */
+            height: 80%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            width: 80%;
+            position: absolute;
+            bottom: 25px;
+            justify-content: flex-start;
+        }
+        .time {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .digit {
+            position: relative;
+            width: 30px;
+            height: 60px;
+            display: inline-block;
+            overflow: hidden;
+        }
+        .digit span {
+            display: block;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .buttons {
+          display: flex;
+          justify-content: space-around;
+          margin-bottom: 20px;
+          width: 279px;
+          position: absolute;
+          bottom: 14px;
+          height: 24%;
+          align-items: center;
+        }
+        .buttons button {
+    background: #007BFF;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 105px;
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+    transition: background 0.3s;
+        }
+        .buttons button:hover {
+            background: #0056b3;
+        }
+        .buttons button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        .laps {
+    max-height: 150px;
+    height: 36%;
+    min-height: 10px;
+    overflow-y: auto;
+    text-align: left;
+    width: 82%;
+    padding-left: 0px;
+    overflow-x: hidden;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 2px 0 black;
+    opacity: 1;
+    transition: opacity 0.4s;
+    position: relative;
+        }
+        .lap {
+          background: #f9f9f9;
+          border-bottom: 1px solid #ddd;
+          padding: 5px;
+          font-size: 16px;
+          animation: flyIn 0.3s;
+          padding-left: 10px;
+        }
+      
+      
+      @keyframes flyIn {
+        0% {
+          opacity: 0;
+          translate: 0 -10px;
+        }
+        100% {
+          opacity: 1;
+          translate: 0;
+        }
+      }
+      
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+    50% {
+        opacity: 0.5;
+    }
+        100% {
+          opacity: 1;
+        }
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+      
+      button#startStopBtn {
+       height: 90px;
+       width: 90px;
+       border-radius: 100px;
+       background: #009d00;
+   }
+      
+      #startStopBtn:hover + #staricon {
+        transform: scale(0.9);
+      }
+      
+      #lapscroll {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        
+      }
+
+    </style>
+</head>
+<body>
+    <div class="stopwatch">
+        <div class="time" id="display">
+            <div class="digit"><span>0</span></div>
+            <div class="digit"><span>0</span></div>
+            <div>:</div>
+            <div class="digit"><span>0</span></div>
+            <div class="digit"><span>0</span></div>
+            <div>:</div>
+            <div class="digit"><span>0</span></div>
+            <div class="digit"><span>0</span></div>
+            <div>.</div>
+            <div class="digit"><span>0</span></div>
+            <div class="digit"><span>0</span></div>
+        </div>
+        <div class="buttons">
+            <button id="resetBtn" disabled>Reset</button>
+            <button id="startStopBtn">
+              <div class="btnicon startstopicon" id="starticon">
+                
+        <svg width="40" height="40" viewBox="0 0 126 157" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M119.361 67.6197C127.208 72.7509 127.208 84.249 119.361 89.3803L20.3647 154.114C11.7184 159.768 0.249986 153.565 0.249986 143.234V13.7658C0.249986 3.435 11.7184 -2.76841 20.3647 2.88546L119.361 67.6197Z" fill="white"/>
+</svg>
+              </div>
+          </button>
+            <button id="lapBtn" disabled>Lap</button>
+        </div>
+        <div class="laps" id="laps"><div id="lapscroll">
+          </div>
+      </div>
+    </div>
+
+    <script>
+let startTime;
+let updatedTime;
+let difference;
+let tInterval;
+let running = false;
+
+const display = document.getElementById('display');
+const startStopBtn = document.getElementById('startStopBtn');
+const lapBtn = document.getElementById('lapBtn');
+const resetBtn = document.getElementById('resetBtn');
+const laps = document.getElementById('laps');
+      var lapscroll = document.querySelector("#lapscroll");
+
+function startStop() {
+    if (!running) {
+        startTime = new Date().getTime() - (difference || 0);
+        tInterval = setInterval(updateTime, 10); // Update every 10 milliseconds
+        startStopBtn.innerHTML = `
+        <svg width="40" height="40" viewBox="0 0 136 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="51" height="174" rx="16" fill="white"/>
+<rect x="84" width="52" height="174" rx="16" fill="white"/>
+</svg>
+        `;
+        lapBtn.disabled = false;
+        resetBtn.disabled = true;
+        running = true;
+        display.classList.remove('blink');
+    } else {
+        clearInterval(tInterval);
+        startStopBtn.innerHTML = `
+        <svg width="40" height="40" viewBox="0 0 126 157" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M119.361 67.6197C127.208 72.7509 127.208 84.249 119.361 89.3803L20.3647 154.114C11.7184 159.768 0.249986 153.565 0.249986 143.234V13.7658C0.249986 3.435 11.7184 -2.76841 20.3647 2.88546L119.361 67.6197Z" fill="white"/>
+</svg>
+        `;
+        lapBtn.disabled = true;
+        resetBtn.disabled = false;
+        running = false;
+        display.classList.add('blink');
+    }
+}
+
+function reset() {
+    clearInterval(tInterval);
+    difference = 0;
+    running = false;
+    updateDisplay('00:00:00.00');
+    startStopBtn.innerHTML = `
+            <svg width="40" height="40" viewBox="0 0 126 157" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M119.361 67.6197C127.208 72.7509 127.208 84.249 119.361 89.3803L20.3647 154.114C11.7184 159.768 0.249986 153.565 0.249986 143.234V13.7658C0.249986 3.435 11.7184 -2.76841 20.3647 2.88546L119.361 67.6197Z" fill="white"/>`;
+    lapBtn.disabled = true;
+    resetBtn.disabled = true;
+    laps.innerHTML = '';
+    display.classList.remove('blink');
+}
+let num = 1;
+function lap() {
+  if (running) {
+    const lapTime = document.createElement('div');
+    lapTime.classList.add('lap');
+
+    let lapTimeString;
+    let prevLapTime = 0; // Initialize prevLapTime to 0 initially
+
+    if (laps.children.length > 0) {
+      // Get the time from the last lap element (assuming format is "X) 00:00:00.00")
+      prevLapTime = parseFloat(laps.children[laps.children.length - 1].textContent.split(") ")[1]);
+    }
+
+    lapTimeString = formatTime(difference);
+    const currentLapDiff = difference - prevLapTime; // Calculate difference between current and previous lap
+    var lapgap = formatTime(currentLapDiff);
+    if (lapgap == "NaN:NaN:NaN.NaN") {
+      lapgap = "";
+    }
+    
+    lapTime.innerHTML = `
+    ${num}) ${lapTimeString}    <span class="lapgap">${lapgap}</span>`;
+    lapscroll.appendChild(lapTime);
+
+    // Update scrollHeight after appending
+    lapscrollHeight = lapscroll.scrollHeight;
+    lapscroll.scrollTop = lapscrollHeight;
+  }
+  num = num + 1;
+}
+
+
+function updateDisplay(timeString) {
+    const timeDigits = timeString.replace(/:/g, '').replace(/\./g, '').split('');
+    const spans = display.querySelectorAll('.digit span');
+    timeDigits.forEach((digit, index) => {
+        if (spans[index].textContent !== digit) {
+            spans[index].textContent = digit;
+        }
+    });
+}
+
+function updateTime() {
+    updatedTime = new Date().getTime();
+    difference = updatedTime - startTime;
+
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    const centiseconds = Math.floor((difference % 1000) / 10);
+
+    const time = `${(hours < 10) ? "0" + hours : hours}:${(minutes < 10) ? "0" + minutes : minutes}:${(seconds < 10) ? "0" + seconds : seconds}.${(centiseconds < 10) ? "0" + centiseconds : centiseconds}`;
+    updateDisplay(time);
+}
+
+function formatTime(difference) {
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    const centiseconds = Math.floor((difference % 1000) / 10);
+    return `${(hours < 10) ? "0" + hours : hours}:${(minutes < 10) ? "0" + minutes : minutes}:${(seconds < 10) ? "0" + seconds : seconds}.${(centiseconds < 10) ? "0" + centiseconds : centiseconds}`;
+}
+
+startStopBtn.addEventListener('click', startStop);
+resetBtn.addEventListener('click', reset);
+lapBtn.addEventListener('click', lap);
+
+    </script>
+</body>
+</html>
