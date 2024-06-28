@@ -3,7 +3,7 @@ const urlsToCache = [
   '/Stopwatch/',
   '/Stopwatch/index.html',
   '/Stopwatch/styles.css',
-  '/Stopwatch/app.js',
+  '/Stopwatch/main.js',
   '/Stopwatch/images/icon-192x192.png',
   '/Stopwatch/images/icon-512x512.png'
 ];
