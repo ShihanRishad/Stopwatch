@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-pwa-cache-v1';
+const CACHE_NAME = 'stopwatch-cache-1';
 const urlsToCache = [
   '/Stopwatch/',
   '/Stopwatch/index.html',
