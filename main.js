@@ -1,3 +1,13 @@
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/Stopwatch/service-worker.js').then(registration => {
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, error => {
+      console.log('ServiceWorker registration failed: ', error);
+    });
+  });
+}
+
 let startTime;
 let updatedTime;
 let difference;
