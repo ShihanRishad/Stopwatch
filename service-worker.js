@@ -23,3 +23,23 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keyList => {
+      return Promise.all(keyList.map(key => {
+        if (key !== CACHE_NAME) {
+          return caches.delete(key);
+        }
+      }));
+    })
+  );
+  return self.clients.claim();
+});
+
+// Listen for the 'message' event to trigger an update check
+self.addEventListener('message', event => {
+  if (event.data === 'checkForUpdate') {
+    self.skipWaiting();
+  }
+});
