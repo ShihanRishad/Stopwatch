@@ -10,6 +10,7 @@
             height: 100vh;
             background-color: #f0f0f0;
             margin: 0;
+            transition: background-color 0.4s, color 0.4s;
         }
         .stopwatch {
             background: #ffffff;
@@ -21,11 +22,10 @@
             display: flex;
             align-items: center;
             flex-direction: column;
-            position: relative;
             width: 80%;
-            position: absolute;
-            bottom: 25px;
+            position: relative;
             justify-content: flex-start;
+            transition: background-color 0.4s, color 0.4s, box-shadow 0.4s;
         }
         .time {
             font-size: 50px;
@@ -58,6 +58,7 @@
     bottom: 14px;
     height: 24%;
     align-items: center;
+            transition: background-color 0.4s, color 0.4s;
         }
         .buttons button {
     background: #007BFF;
@@ -70,7 +71,7 @@
     position: absolute;
     height: 60px;
     width: 60px;
-    transition: background 0.3s;
+    transition: background 0.3s, background-color 0.4s, color 0.4s;
         }
         .buttons button:active {
             background: #0056b3;
@@ -91,6 +92,7 @@
             opacity: 1;
             transition: opacity 0.4s;
             position: relative;
+            transition: background-color 0.4s, color 0.4s, box-shadow 0.4s;
         }
         .lap {
     background: #f9f9f9;
@@ -101,6 +103,7 @@
     padding-left: 10px;
     display: flex;
     justify-content: space-around;
+            transition: background-color 0.4s, color 0.4s;
         }
         @keyframes flyIn {
             0% {
@@ -151,7 +154,28 @@
             overflow-y: scroll;
             display: flex;
             flex-direction: column;
+            transition: background-color 0.4s, color 0.4s;
         }
+    
+  #lapscroll::-webkit-scrollbar { /* Chrome, Safari, etc. */
+  width: 7px; /* Scrollbar width */
+  background-color: transparent; /* Track color */
+  border-radius: 5px; /* Rounded corners */
+    opacity: 0;
+}
+  
+  #lapscroll::-webkit-scrollbar-thumb {
+    /* background-color: #757575; */
+    background: grey;
+    border-radius: 5px;
+    transition: all 1s;
+    opacity: 0.6;
+}
+  
+#lapscroll::-webkit-scrollbar-thumb:active {
+    background: lightgrey;
+    /* background-color: blue; */
+}
       
       #lapicon {
         position: relative;
@@ -164,15 +188,17 @@
         left: -11px;
       }
       
-      #resetBtn {
-    animation: flyInLeft 0.5s;
-    display: none;
-      }
+          #resetBtn {
+            animation: flyInLeft 0.5s;
+            display: none;
+            transition: background-color 0.4s, color 0.4s;
+         }
       
       #lapBtn {
-    animation: flyInRight 0.5s;
-    display: none;
-    right: 0;
+            animation: flyInRight 0.5s;
+            display: none;
+            right: 0;
+            transition: background-color 0.4s, color 0.4s;
       }
       
       @keyframes flyInLeft {
@@ -218,3 +244,32 @@
           translate: -100%;
         }
       }
+              .theme {
+            position: absolute;
+            height: 70px;
+            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #009b7c;
+            border-radius: 50%;
+            font-size: 3vh;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            opacity: 60%;
+            transition: opacity 0.3s;
+            user-select: none;
+            box-shadow: none;
+            z-index: 15;
+            transition: box-shadow 0.2s, translate 0.2s, scale 0.2s, opacity 0.2s;
+        }
+        .theme:hover {
+            box-shadow: 5px 4px 2px 0 #000000cc;
+            opacity: 1;
+        }
+        .theme:active {
+            box-shadow: 0px 0px 2px 0 #000000cc;
+            translate: 5px 4px;
+            scale: 0.95;
+        }
