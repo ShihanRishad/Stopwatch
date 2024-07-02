@@ -1,15 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stopwatch</title>
+    <title>Stylish Stopwatch with Laps and Centiseconds</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="styles.css">
-
 </head>
 <body>
+      <div class="theme" id="themechange">
+        <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm40-83q119-15 199.5-104.5T800-480q0-123-80.5-212.5T520-797v634Z"/></svg>
+     </div>
     <div class="stopwatch">
         <div class="time" id="display">
             <div class="digit"><span>0</span></div>
@@ -57,7 +58,6 @@
           </div>
       </div>
     </div>
- 
     <script src="main.js"></script>
 </body>
 </html>
