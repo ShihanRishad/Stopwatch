@@ -5,5 +5,5 @@ Also, by just tapping the draggable theme changing button, you change the theme,
 You can open it by just downloading this repository, and opening the ```index.html``` file. 
 You can also simply open this at <a href="https://shihanrishad.github.io/Stopwatch/">Page at github</a>.
 
-
+<img src="images/screenshot white.png"/>
 This is just an experimental version, it will Continue to have new features! ⏱️
