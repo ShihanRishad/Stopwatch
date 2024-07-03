@@ -1,15 +1,32 @@
 # Stopwatch ⏱️
-A simple stopwatch. 
-In this stopwatch, you can start it, lap a time, and reset the time. 
-Also, by just tapping the draggable theme changing button, you change the theme, and when you reload, browser will remember your selection (Using ```localStorage```) and load that specific theme for you. If you don't have any selected theme, the stopwatch will load the device theme by defult. 
-You can open it by just downloading this repository, and opening the ```index.html``` file. 
-You can also simply open this at <a href="https://shihanrishad.github.io/Stopwatch/">Page at github</a>.
 
-<img src="images/screenshot white.png" alt="Screenshot light theme" width="200px">
-Light theme
+This is a simple stopwatch application. It allows you to perform the following actions:
 
+1. **Start**: Begin the stopwatch.
+2. **Lap**: Record a lap time.
+3. **Reset**: Reset the stopwatch to zero.
 
-<img src="images/screenshot dark.png" alt="Screenshot dark theme" width="200px"/>
-Black theme
+Additionally, there's a draggable theme-changing button. When you tap it, the theme changes. If you reload the page, your theme selection will be remembered using `localStorage`. If no theme is selected, the stopwatch will default to the device theme.
 
-This is just an experimental version, it will Continue to have new features! ⏱️
+## How to Use
+
+1. Download this repository.
+2. Open the `index.html` file in your browser.
+
+You can also access the stopwatch directly on the [GitHub Page](https://shihanrishad.github.io/Stopwatch/).
+
+### Screenshots
+
+- Light theme:
+  ![Screenshot light theme](images/screenshot-white.png)
+
+- Dark theme:
+  ![Screenshot dark theme](images/screenshot-dark.png)
+
+Remember, this is an experimental version, and more features are coming! ⏱️
+
+---
+
+Feel free to customize this further or add any additional details specific to your project. Let me know if you need any more assistance! 😊🚀¹⁴⁵
+
+![Stopwatch](images/icon-1024x1024.png)
