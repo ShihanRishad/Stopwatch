@@ -5,11 +5,11 @@ Also, by just tapping the draggable theme changing button, you change the theme,
 You can open it by just downloading this repository, and opening the ```index.html``` file. 
 You can also simply open this at <a href="https://shihanrishad.github.io/Stopwatch/">Page at github</a>.
 
-<img src="images/screenshot white.png" height="100px">
+<img src="images/screenshot white.png" alt="Screenshot light theme" width="200px">
 Light theme
 
 
-<img src="images/screenshot black.png" height="100px"/>
+<img src="images/screenshot dark.png" alt="Screenshot dark theme" width="200px"/>
 Black theme
 
 This is just an experimental version, it will Continue to have new features! ⏱️
