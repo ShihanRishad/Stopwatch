@@ -1,21 +1,7 @@
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/Stopwatch/service-worker.js').then(registration => {
+    navigator.serviceWorker.register('/test123test/service-worker.js').then(registration => {
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      
-      // Check for updates periodically
-      setInterval(() => {
-        registration.update();
-      }, 60 * 60 * 1000); // Check every hour
-
-      // Listen for controlling service worker change
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        console.log('New service worker activated');
-        alert('A new update is available. Please refresh the page.');
-        if (confirm('A new update is available. Would you like to refresh now?')) {
-    window.location.reload();
-  }
-      });
     }, error => {
       console.log('ServiceWorker registration failed: ', error);
     });
