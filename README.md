@@ -25,7 +25,8 @@ Additionally, there's a draggable theme-changing button. When you tap it, the th
 - Dark theme:<br>
   <img src="images/screenshot-dark.png" alt="Screenshot dark theme" style="border-radius: 8px;" width="300px">
 
-Remember, this is an experimental version, and more features are coming! ⏱️
+This is an experimental version, and more features are coming! ⏱️
+
 ---
 
-![Stopwatch](images/icon-1024x1024.png)
+<img src="images/icon-1024x1024.png" alt="Stopwatch Logo" width="200px">
