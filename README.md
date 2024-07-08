@@ -17,10 +17,12 @@ You can also access the stopwatch directly on the [GitHub Page](https://shihanri
 
 ### Screenshots
 
-- Light theme:
+- Light theme:<br>
   <img src="images/screenshot-white.png" alt="Screenshot light theme" style="border-radius: 8px;" width="300px">
 
-- Dark theme:
+<br>
+
+- Dark theme:<br>
   <img src="images/screenshot-dark.png" alt="Screenshot dark theme" style="border-radius: 8px;" width="300px">
 
 Remember, this is an experimental version, and more features are coming! ⏱️
