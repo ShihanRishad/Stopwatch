@@ -24,9 +24,6 @@ You can also access the stopwatch directly on the [GitHub Page](https://shihanri
   <img src="images/screenshot-dark.png" alt="Screenshot dark theme" style="border-radius: 8px;" width="300px">
 
 Remember, this is an experimental version, and more features are coming! ⏱️
-
 ---
-
-Feel free to customize this further or add any additional details specific to your project. Let me know if you need any more assistance! 😊🚀¹⁴⁵
 
 ![Stopwatch](images/icon-1024x1024.png)
