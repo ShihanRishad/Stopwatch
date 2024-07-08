@@ -13,7 +13,7 @@ Additionally, there's a draggable theme-changing button. When you tap it, the th
 1. Download this repository.
 2. Open the `index.html` file in your browser.
 
-You can also access the stopwatch directly on the [GitHub Page](https://shihanrishad.github.io/Stopwatch/).
+<h3>You can also access the stopwatch directly on my <a href="https://shihanrishad.github.io/Stopwatch/">GitHub Page</a>.</h3>
 
 ### Screenshots
 
